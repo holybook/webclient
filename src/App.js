@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {createBrowserRouter, RouterProvider, useParams,} from 'react-router-dom';
+import {Reader} from './reader/Reader.js';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Hello world!</div>,
+  },
+  {
+    path: '/books/:id',
+    loader: async ({params}) => {
+      return fetch(`http://localhost:8080/books/${params.id}`);
+    },
+    element: <Reader />
+  }
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <RouterProvider router={router} />
   );
 }
 
