@@ -3,6 +3,24 @@
   src: url("fonts/LinLibertine_Rah.ttf") format("truetype");
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.reader {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 p.par {
   font-family: Libertine, serif;
   font-size: 16pt;
@@ -11,10 +29,18 @@ p.par {
   padding-bottom: 10px;
 }
 
-.reader {
-  height: 100vh;
+.topbar {
+  flex-basis: 100px;
+  min-height: 40px;
+  background-color: #fcfcfc;
+  box-shadow: 0 3px 5px #aaa;
+}
+
+.content {
+  flex-grow: 1;
   width: 800px;
   margin: auto;
+  overflow: scroll;
 }
 
 @keyframes App-logo-spin {
