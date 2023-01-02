@@ -16,6 +16,7 @@ export function TopBar({book, language}) {
         <Select
             value={language}
             onChange={setLanguage}
+            size="small"
         >
             {book.translations.map((translation) => {
                 return (<MenuItem value={translation.language} key={translation.language}>

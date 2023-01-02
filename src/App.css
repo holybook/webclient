@@ -37,6 +37,10 @@ p.par {
   box-shadow: 0 3px 5px #aaa;
 }
 
+#language-selector {
+  height: 40px;
+}
+
 #content {
   flex-grow: 1;
   width: 800px;
