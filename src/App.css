@@ -26,7 +26,8 @@ p.par {
   font-size: 16pt;
   text-align: justify;
   text-indent: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
+  margin: 0;
 }
 
 .topbar {
@@ -36,7 +37,7 @@ p.par {
   box-shadow: 0 3px 5px #aaa;
 }
 
-.content {
+#content {
   flex-grow: 1;
   width: 800px;
   margin: auto;

@@ -1,43 +1,60 @@
-import React from 'react';
+import React, {useLayoutEffect, useRef, useState} from 'react';
+import {setTopPosition} from "./ScrollPosition";
 
-export class Paragraphs extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            language: null,
-            paragraphs: []
-        }
-    }
+export function Paragraphs({book, language, scrollIndex, scrollOffset}) {
 
-    fetchParagraphs(language) {
-        fetch(`http://0.0.0.0:8080/books/${this.props.book.id}/paragraphs?lang=${language}`)
+    const [state, setState] = useState({
+        language: null,
+        paragraphs: []
+    });
+
+    function fetchParagraphs(language) {
+        fetch(`http://0.0.0.0:8080/books/${book.id}/paragraphs?lang=${language}`)
             .then(response => {
                 return response.json()
             })
             .then(paragraphs => {
-                this.setState(() => {
-                    return {
-                        language: language,
-                        paragraphs: paragraphs
-                    }
+                setState({
+                    language: language,
+                    paragraphs: paragraphs
                 })
             })
     }
 
-    render() {
-        if (this.state.language !== this.props.language) {
-            // refetch
-            this.fetchParagraphs(this.props.language)
-        }
-
-        if (this.state.language === null) {
-            return <div>
-                Loading...
-            </div>
-        }
-
-        return this.state.paragraphs.map((paragraph) =>
-            <p className={`par ${paragraph.type}`}>{paragraph.text}</p>
-        )
+    if (state.language !== language) {
+        // refetch
+        fetchParagraphs(language)
     }
+
+    if (state.language === null) {
+        return <div>
+            Loading...
+        </div>
+    }
+
+    return state.paragraphs.map((paragraph) =>
+        <Paragraph
+            paragraph={paragraph}
+            key={paragraph.index}
+            scrollIndex={scrollIndex}
+            scrollOffset={scrollOffset}/>
+    )
+}
+
+function Paragraph({paragraph, scrollIndex, scrollOffset}) {
+
+    const ref = useRef(null);
+    useLayoutEffect(() => {
+        const topPosition = ref.current.offsetTop;
+        setTopPosition(paragraph.index, topPosition);
+        if (paragraph.index === scrollIndex) {
+            document.getElementById('content').scrollTo({
+                top: topPosition - scrollOffset
+            });
+        }
+    });
+
+    return (<p ref={ref} className={`par ${paragraph.type}`}>
+        <span className="index">{paragraph.index}</span> {paragraph.text}
+    </p>);
 }

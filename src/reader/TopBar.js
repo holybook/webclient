@@ -1,5 +1,6 @@
 import {MenuItem, Select} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {getScrollPosition} from "./ScrollPosition";
 
 export function TopBar({book, language}) {
 
@@ -8,7 +9,7 @@ export function TopBar({book, language}) {
     function setLanguage(event) {
         const language = event.target.value
         console.log(`/books/${book.id}?lang=${language}`)
-        navigate(`/books/${book.id}?lang=${language}`)
+        navigate(`/books/${book.id}?lang=${language}&pos=${getScrollPosition()}`)
     }
 
     return (<div className="topbar">
@@ -17,7 +18,7 @@ export function TopBar({book, language}) {
             onChange={setLanguage}
         >
             {book.translations.map((translation) => {
-                return (<MenuItem value={translation.language}>
+                return (<MenuItem value={translation.language} key={translation.language}>
                     {translation.language}
                 </MenuItem>);
             })}
