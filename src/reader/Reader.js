@@ -9,22 +9,22 @@ import {TopBar} from "./TopBar";
 import {parsePosition} from "./ScrollPosition";
 
 export function Reader() {
-    const book = useLoaderData();
-    const [params,] = useSearchParams();
-    console.log('params: ', params.get('lang'));
-    const position = parsePosition(params.get('pos'));
-    const language = params.get('lang') ?? 'en';
+  const book = useLoaderData();
+  const [params,] = useSearchParams();
+  const encodedPosition = params.get('pos');
+  const position = (encodedPosition !== null) ? parsePosition(encodedPosition)
+      : null;
+  const language = params.get('lang') ?? 'en';
 
-    return (
-        <div className="reader">
-            <TopBar book={book} language={language} />
-            <div id="content">
-                <Paragraphs
-                    book={book}
-                    language={language}
-                    scrollIndex={position.index}
-                    scrollOffset={position.offset}/>
-            </div>
+  return (
+      <div className="reader">
+        <TopBar book={book} language={language}/>
+        <div id="content">
+          <Paragraphs
+              book={book}
+              language={language}
+              scrollPosition={position}/>
         </div>
-    );
+      </div>
+  );
 }

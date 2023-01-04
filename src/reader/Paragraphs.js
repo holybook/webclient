@@ -1,7 +1,7 @@
 import React, {useLayoutEffect, useRef, useState} from 'react';
 import {setTopPosition} from "./ScrollPosition";
 
-export function Paragraphs({book, language, scrollIndex, scrollOffset}) {
+export function Paragraphs({book, language, scrollPosition}) {
 
     const [state, setState] = useState({
         language: null,
@@ -9,7 +9,8 @@ export function Paragraphs({book, language, scrollIndex, scrollOffset}) {
     });
 
     function fetchParagraphs(language) {
-        fetch(`http://0.0.0.0:8080/books/${book.id}/paragraphs?lang=${language}`)
+        fetch(
+            `http://0.0.0.0:8080/books/${book.id}/paragraphs?lang=${language}`)
             .then(response => {
                 return response.json()
             })
@@ -36,20 +37,20 @@ export function Paragraphs({book, language, scrollIndex, scrollOffset}) {
         <Paragraph
             paragraph={paragraph}
             key={paragraph.index}
-            scrollIndex={scrollIndex}
-            scrollOffset={scrollOffset}/>
+            scrollPosition={scrollPosition}/>
     )
 }
 
-function Paragraph({paragraph, scrollIndex, scrollOffset}) {
+function Paragraph({paragraph, scrollPosition}) {
 
     const ref = useRef(null);
     useLayoutEffect(() => {
         const topPosition = ref.current.offsetTop;
         setTopPosition(paragraph.index, topPosition);
-        if (paragraph.index === scrollIndex) {
+        if (scrollPosition !== null && paragraph.index
+            === scrollPosition.index) {
             document.getElementById('content').scrollTo({
-                top: topPosition - scrollOffset
+                top: topPosition - scrollPosition.offset
             });
         }
     });
