@@ -1,25 +1,19 @@
-import {TopBar} from '../reader/TopBar';
-import {useLoaderData, useNavigate, useSearchParams} from 'react-router-dom';
+import {TopBar} from './TopBar';
+import {useLoaderData, useSearchParams} from 'react-router-dom';
 import {BookItem} from './BookItem';
 import './Overview.scss';
 
 export function Overview() {
   const books = useLoaderData();
   const [params,] = useSearchParams();
-  const navigate = useNavigate();
   const language = params.get('lang') ?? 'en';
-
-  function setLanguage(language) {
-    navigate(`/?lang=${language}`)
-  }
 
   const bookItems = getBookItemsByLanguage(books, language);
 
   return (
       <div className="overview">
         <TopBar supportedLanguages={getSupportedLanguages(books)}
-                activeLanguage={language}
-                onLanguageChanged={setLanguage}/>
+                activeLanguage={language}/>
         <div id="content">
           {bookItems.map(
               item =>
