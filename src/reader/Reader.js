@@ -7,6 +7,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {TopBar} from "./TopBar";
 import {parsePosition} from "./ScrollPosition";
+import './Reader.scss';
 
 export function Reader() {
   const book = useLoaderData();

@@ -1,6 +1,7 @@
 import {LanguageSelect} from '../common/LanguageSelect';
 import {getScrollPosition} from './ScrollPosition';
 import {useNavigate} from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 export function TopBar({book, activeLanguage}) {
 
@@ -13,7 +14,14 @@ export function TopBar({book, activeLanguage}) {
     navigate(`/books/${book.id}?lang=${language}&pos=${getScrollPosition()}`)
   }
 
+  function goHome() {
+    navigate(`/?lang=${activeLanguage}`)
+  }
+
   return (<div className="topbar">
+    <div id="home-button" onClick={goHome}>
+      <HomeIcon />
+    </div>
     <LanguageSelect
         supportedLanguages={supportedLanguages}
         activeLanguage={activeLanguage}
