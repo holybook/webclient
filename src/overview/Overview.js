@@ -2,6 +2,7 @@ import {TopBar} from './TopBar';
 import {useLoaderData, useSearchParams} from 'react-router-dom';
 import {BookItem} from './BookItem';
 import './Overview.scss';
+import {getSupportedLanguages} from "../common/Utils";
 
 export function Overview() {
   const books = useLoaderData();
@@ -23,16 +24,6 @@ export function Overview() {
         </div>
       </div>
   );
-}
-
-function getSupportedLanguages(books) {
-  const languageSet = new Set();
-  for (const book of books) {
-    for (const translation of book.translations) {
-      languageSet.add(translation.language);
-    }
-  }
-  return Array.from(languageSet).sort();
 }
 
 function getBookItemsByLanguage(books, language) {
