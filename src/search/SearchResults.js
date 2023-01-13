@@ -2,6 +2,7 @@ import {TopBar} from "./TopBar";
 import {useLoaderData, useSearchParams} from "react-router-dom";
 import React, {useState} from "react";
 import {getSupportedLanguages} from "../common/Utils";
+import './SearchResult.scss';
 
 export function SearchResultsPage() {
     const books = useLoaderData();
@@ -52,15 +53,17 @@ function SearchResults({query, language}) {
     return state.results.map((result) =>
         <SearchResult
             data={result}
+            language={language}
             key={`${result.bookId}:${result.paragraph.index}`}
         />
     )
 }
 
-function SearchResult({data}) {
+function SearchResult({data, language}) {
     return (
-        <p className="par">
-            {data.paragraph.text}
-        </p>
+        <a href={`/books/${data.bookId}?lang=${language}&pos=${data.paragraph.index}:80`}
+           className="search-result" dangerouslySetInnerHTML={{
+            __html: data.highlightedText
+        }} />
     )
 }
