@@ -39,7 +39,7 @@ function rowRenderer({key, index, parent, style}) {
 export function ParagraphsVirtualized({book}) {
 
     function loadMoreRows({startIndex, stopIndex}) {
-        return fetch(`http://0.0.0.0:8080/books/${book.id}/paragraphs?start=${startIndex}&end=${stopIndex}`)
+        return fetch(`/books/${book.id}/paragraphs?start=${startIndex}&end=${stopIndex}`)
             .then(response => {
                 return response.json()
             })

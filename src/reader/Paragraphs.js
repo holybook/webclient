@@ -10,7 +10,7 @@ export function Paragraphs({book, language, scrollPosition}) {
 
     function fetchParagraphs(language) {
         fetch(
-            `http://0.0.0.0:8080/books/${book.id}/paragraphs?lang=${language}`)
+            `/books/${book.id}/paragraphs?lang=${language}`)
             .then(response => {
                 return response.json()
             })

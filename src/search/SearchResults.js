@@ -27,7 +27,7 @@ function SearchResults({query, language}) {
 
     function fetchSearchResults(query, language) {
         fetch(
-            `http://0.0.0.0:8080/search?q=${query}&lang=${language}`)
+            `/search?q=${query}&lang=${language}`)
             .then(response => {
                 return response.json();
             })
