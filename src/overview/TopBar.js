@@ -1,6 +1,7 @@
 import {LanguageSelect} from '../common/LanguageSelect';
 import {useNavigate} from 'react-router-dom';
 import {TextField} from '@mui/material';
+import {SearchBar} from '../search/SearchBar';
 
 export function TopBar({supportedLanguages, activeLanguage}) {
 
@@ -16,9 +17,6 @@ export function TopBar({supportedLanguages, activeLanguage}) {
         activeLanguage={activeLanguage}
         onLanguageChanged={setLanguage}
     />
-    <TextField variant="outlined"
-               size="small"
-               label="Search"
-               fullWidth />
+    <SearchBar />
   </div>);
 }
