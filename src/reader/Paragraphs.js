@@ -10,7 +10,7 @@ export function Paragraphs({book, language, scrollPosition}) {
 
     function fetchParagraphs(language) {
         fetch(
-            `/books/${book.id}/paragraphs?lang=${language}`)
+            `/api/books/${book.id}/paragraphs?lang=${language}`)
             .then(response => {
                 return response.json()
             })

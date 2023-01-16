@@ -27,7 +27,7 @@ function SearchResults({query, language}) {
 
     function fetchSearchResults(query, language) {
         fetch(
-            `/search?q=${query}&lang=${language}`)
+            `/api/search?q=${query}&lang=${language}`)
             .then(response => {
                 return response.json();
             })

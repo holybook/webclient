@@ -8,21 +8,21 @@ const router = createBrowserRouter([
   {
     path: '/',
     loader: async ({params}) => {
-      return fetch(`http://localhost:8080/books`);
+      return fetch(`/api/books`);
     },
     element: <Overview />,
   },
   {
     path: '/books/:id',
     loader: async ({params}) => {
-      return fetch(`http://localhost:8080/books/${params.id}`);
+      return fetch(`/api/books/${params.id}`);
     },
     element: <Reader />
   },
   {
     path: '/search',
     loader: async ({params}) => {
-      return fetch(`http://localhost:8080/books`);
+      return fetch(`/api/books`);
     },
     element: <SearchResultsPage />
   }
