@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {TopBar} from './TopBar';
 import {TextField} from '@mui/material';
 import './Translate.scss';
@@ -39,7 +39,12 @@ export function Translate() {
     return '';
   }
 
-  submitTranslation();
+  useEffect(() => {
+    if (textToBeTranslated.length > 0) {
+      submitTranslation();
+    }
+  }, [fromLanguage, toLanguage, textToBeTranslated])
+
 
   return (<div id="translate">
         <TopBar activeLanguage={fromLanguage}/>
