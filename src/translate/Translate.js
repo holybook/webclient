@@ -8,13 +8,14 @@ export function Translate() {
   const [fromLanguage, setFromLanguage] = useState('en');
   const [toLanguage, setToLanguage] = useState('de');
   const [translationResult, setTranslationResult] = useState(null);
+  const [textToBeTranslated, setTextToBeTranslated] = useState('');
   const supportedLanguages = ['en', 'de'];
 
-  function submitTranslation(text) {
+  function submitTranslation() {
     const translationRequest = {
       fromLanguage: fromLanguage,
       toLanguage: toLanguage,
-      text: text
+      text: textToBeTranslated
     };
     fetch('/api/translate', {
       method: 'POST',
@@ -23,11 +24,11 @@ export function Translate() {
       },
       body: JSON.stringify(translationRequest)
     }).then(response => {
-      return response.json()
-    })
-    .then(result => {
-      setTranslationResult(result);
-    });
+          return response.json()
+        })
+        .then(result => {
+          setTranslationResult(result);
+        });
   }
 
   function getTranslatedText() {
@@ -38,6 +39,8 @@ export function Translate() {
     return '';
   }
 
+  submitTranslation();
+
   return (<div id="translate">
         <TopBar activeLanguage={fromLanguage}/>
         <div className="language-header">
@@ -45,14 +48,14 @@ export function Translate() {
             <LanguageSelect
                 supportedLanguages={supportedLanguages}
                 activeLanguage={fromLanguage}
-                onLanguageChanged={(event) => setFromLanguage(event.target.value)}
+                onLanguageChanged={setFromLanguage}
             />
           </div>
           <div className="language-container">
             <LanguageSelect
                 supportedLanguages={supportedLanguages}
                 activeLanguage={toLanguage}
-                onLanguageChanged={(event) => setToLanguage(event.target.value)}
+                onLanguageChanged={setToLanguage}
             />
           </div>
         </div>
@@ -62,7 +65,7 @@ export function Translate() {
               multiline={true}
               minRows="15"
               maxRows="15"
-              onChange={(event) => submitTranslation(event.target.value)}
+              onChange={(event) => setTextToBeTranslated(event.target.value)}
           />
           <TextField
               className="translate-text"
