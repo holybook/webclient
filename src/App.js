@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider, useParams,} from 'react-router-dom'
 import {Reader} from './reader/Reader.js';
 import {Overview} from './overview/Overview';
 import {SearchResults, SearchResultsPage} from "./search/SearchResults";
+import {Translate} from './translate/Translate';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       return fetch(`/api/books`);
     },
     element: <SearchResultsPage />
+  },
+  {
+    path: '/translate',
+    element: <Translate />
   }
 ]);
 

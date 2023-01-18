@@ -1,6 +1,5 @@
 import {LanguageSelect} from '../common/LanguageSelect';
 import {useNavigate} from 'react-router-dom';
-import {TextField} from '@mui/material';
 import {SearchBar} from '../search/SearchBar';
 
 export function TopBar({supportedLanguages, activeLanguage}) {
