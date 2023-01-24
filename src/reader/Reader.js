@@ -22,11 +22,13 @@ export function Reader() {
         <TopBar
             book={book}
             activeLanguage={language}/>
-        <div id="content">
-          <Paragraphs
-              book={book}
-              language={language}
-              scrollPosition={position}/>
+        <div id="content-container">
+          <div id="content">
+            <Paragraphs
+                book={book}
+                language={language}
+                scrollPosition={position}/>
+          </div>
         </div>
       </div>
   );

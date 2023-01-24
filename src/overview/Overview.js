@@ -16,10 +16,12 @@ export function Overview() {
       <div className="overview">
         <TopBar supportedLanguages={getSupportedLanguages(books)}
                 activeLanguage={language}/>
-        <div id="content">
-          {Object.keys(bookItems).map(author =>
-              <AuthorBookItems author={author} books={bookItems[author]}/>
-          )}
+        <div id="content-container">
+          <div id="content">
+            {Object.keys(bookItems).map(author =>
+                <AuthorBookItems author={author} books={bookItems[author]}/>
+            )}
+          </div>
         </div>
       </div>
   );

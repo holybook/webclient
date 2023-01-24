@@ -38,8 +38,9 @@ p.par {
   text-align: justify;
   text-indent: 10px;
   padding-bottom: 30px;
-  margin: 0;
   color: #6d6875;
+  max-width: 800px;
+  margin: 0;
 }
 
 .topbar {
@@ -54,11 +55,16 @@ p.par {
   height: 40px;
 }
 
-#content {
+#content-container {
   flex-grow: 1;
-  width: 800px;
-  margin: auto;
   overflow: scroll;
+  width: 100%;
+}
+
+#content {
+  max-width: 800px;
+  margin: auto;
+  padding-top: 40px;
 }
 
 @keyframes App-logo-spin {
