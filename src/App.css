@@ -3,12 +3,23 @@
   src: url("fonts/LinLibertine_Rah.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: Source Sans Pro;
+  src: url("fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Source Sans Pro Bold;
+  src: url("fonts/SourceSansPro-Bold.ttf") format("truetype");
+}
+
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
+  font-family: Source Sans Pro, sans-serif;
 }
 
 #root {
@@ -28,11 +39,12 @@ p.par {
   text-indent: 10px;
   padding-bottom: 30px;
   margin: 0;
+  color: #6d6875;
 }
 
 .topbar {
   padding: 8px;
-  flex-basis: 100px;
+  flex-basis: 40px;
   min-height: 40px;
   background-color: #fcfcfc;
   box-shadow: 0 3px 5px #aaa;
