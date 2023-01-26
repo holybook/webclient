@@ -51,7 +51,7 @@ p.par {
 
 #content-container {
   flex-grow: 1;
-  overflow: scroll;
+  overflow: auto;
   width: 100%;
 }
 
