@@ -26,12 +26,6 @@ body {
   height: 100%;
 }
 
-.reader {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 p.par {
   font-family: Libertine, serif;
   font-size: 16pt;
