@@ -22,3 +22,20 @@
 #home-button:hover {
   background-color: #efefef;
 }
+
+p.par {
+  font-family: Libertine, serif;
+  font-size: 16pt;
+  text-align: justify;
+  text-indent: 4px;
+  padding-bottom: 30px;
+  color: #2d2835;
+  max-width: 800px;
+  margin: 0;
+
+  .number {
+    font-size: 12pt;
+    vertical-align: 3px;
+    color: #6d6875;
+  }
+}
